@@ -8,5 +8,8 @@ class ElectricCar(Vehicle):
         else:
             self.seating_capacity = seating_capacity
     
-    def calculate_trip_cost(self, distance):
-        return distance * self.get_rental_price()
+    def calculate_trip_cost(self, value):
+        if value < 0 :
+            return ValueError("Distance cannot be negative.")
+        else:
+            return 5.00 + 0.50 * value
