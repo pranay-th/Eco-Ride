@@ -7,3 +7,6 @@ class ElectricScooter(Vehicle):
             raise ValueError("Max speed cannot be negative")
         else:
             self.max_speed_limit = max_speed_limit
+
+    def calculate_trip_cost(self,distance):
+        return distance * self.get_rental_price()

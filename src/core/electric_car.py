@@ -7,4 +7,6 @@ class ElectricCar(Vehicle):
             raise ValueError("Seating Capacity cannot be negative")
         else:
             self.seating_capacity = seating_capacity
-        
+    
+    def calculate_trip_cost(self, distance):
+        return distance * self.get_rental_price()
