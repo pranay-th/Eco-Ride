@@ -102,5 +102,47 @@ class FleetManager():
         for vehicle in sorted_vehicles:
             print(vehicle)
 
+    def display_vehicles_sorted_by_battery(self,hub_name=None,reverse=True):
+        if hub_name:
+            vehicles=self.get_vehicles_by_hub(hub_name)
+        else:
+            vehicles=[]
+            for hub_vehicles in self.hubs.values():
+                vehicles.extend(hub_vehicles)
 
-        
+        sorted_vehicles = sorted(vehicles, key=lambda v: v.get_battery_percentage(),reverse=True)
+        print("Here are vehicles sorted by battery percentage")
+        for vehicle in sorted_vehicles:
+            print(vehicle)
+        """if reverse==True:
+            sorted_vehicles=sorted_vehicles[::-1]
+            print("Here are vehicles sorted by battery percentage in descending order.")
+            for vehicle in sorted_vehicles:
+                print(vehicle)
+        else:
+            print("Here are vehicles sorted by battery percentage in ascending order.")
+            for vehicle in sorted_vehicles:
+                print(vehicle)"""
+
+    
+    def display_vehicles_sorted_by_rentalprice(self,hub_name=None,reverse=True):
+        if hub_name:
+            vehicles=self.get_vehicles_by_hub(hub_name)
+        else:
+            vehicles=[]
+            for hub_vehicles in self.hubs.values():
+                vehicles.extend(hub_vehicles)
+            
+        sorted_vehicles = sorted(vehicles, key=lambda v: v.get_rental_price(),reverse=True)
+        print("Here are vehicles sorted by rental price")
+        for vehicle in sorted_vehicles:
+            print(vehicle)
+        """if reverse==True:
+            sorted_vehicles=sorted_vehicles[::-1]
+            print("Here are vehicles sorted by rental price in descending order.")
+            for vehicle in sorted_vehicles:
+                print(vehicle)
+        else:
+            print("Here are vehicles sorted by battery rental price in ascending order.")
+            for vehicle in sorted_vehicles:
+                print(vehicle)"""
