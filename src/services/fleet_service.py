@@ -1,3 +1,8 @@
+from ..schemas.electric_car import ElectricCar
+from ..schemas.electric_scooter import ElectricScooter
+from .csv_service import save_to_csv, load_from_csv
+from .json_service import save_to_json, load_from_json
+
 class FleetManager():
     def __init__(self):
         self.hubs = {}
@@ -114,15 +119,6 @@ class FleetManager():
         print("Here are vehicles sorted by battery percentage")
         for vehicle in sorted_vehicles:
             print(vehicle)
-        """if reverse==True:
-            sorted_vehicles=sorted_vehicles[::-1]
-            print("Here are vehicles sorted by battery percentage in descending order.")
-            for vehicle in sorted_vehicles:
-                print(vehicle)
-        else:
-            print("Here are vehicles sorted by battery percentage in ascending order.")
-            for vehicle in sorted_vehicles:
-                print(vehicle)"""
 
     
     def display_vehicles_sorted_by_rentalprice(self,hub_name=None,reverse=True):
@@ -137,12 +133,15 @@ class FleetManager():
         print("Here are vehicles sorted by rental price")
         for vehicle in sorted_vehicles:
             print(vehicle)
-        """if reverse==True:
-            sorted_vehicles=sorted_vehicles[::-1]
-            print("Here are vehicles sorted by rental price in descending order.")
-            for vehicle in sorted_vehicles:
-                print(vehicle)
-        else:
-            print("Here are vehicles sorted by battery rental price in ascending order.")
-            for vehicle in sorted_vehicles:
-                print(vehicle)"""
+
+    def save_to_csv(self, filename):
+        save_to_csv(self.hubs, filename)
+
+    def load_from_csv(self, filename):
+        load_from_csv(self.hubs, filename, self.add_hub)
+
+    def save_to_json(self, filename):
+        save_to_json(self.hubs, filename)
+
+    def load_from_json(self, filename):
+        load_from_json(self.hubs, filename, self.add_hub)
