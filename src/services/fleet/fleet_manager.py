@@ -94,4 +94,13 @@ class FleetManager():
         for status, count in status_count.items():
             print(f"{status}: {count}")
 
+    def display_vehicles_sorted_by_model(self,hub_name):
+        vehicles=self.get_vehicles_by_hub(hub_name)
+
+        sorted_vehicles = sorted(vehicles, key=lambda v: v.model.lower())
+        print(f"Here is the vehicle models in the hub sorted alphabetically")
+        for vehicle in sorted_vehicles:
+            print(vehicle)
+
+
         
