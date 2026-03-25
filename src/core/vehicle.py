@@ -45,11 +45,13 @@ class Vehicle(ABC):
         pass
     
     def __eq__(self,other):
-        if isInstance(other,Vehicle):
+        if isinstance(other,Vehicle):
             return self.vehicle_id == other.vehicle_id
         else:
             return False
 
+    def __str__(self):
+        return f"{type(self).__name__} {self.vehicle_id}({self.model}) - Battery: {selfget_battery_percentage()}, Status:{self.get_maintenance_status()}."
 
     def main():
         print(r"""
