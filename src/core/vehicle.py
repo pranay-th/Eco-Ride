@@ -51,7 +51,7 @@ class Vehicle(ABC):
             return False
 
     def __str__(self):
-        return f"{type(self).__name__} {self.vehicle_id}({self.model}) - Battery: {selfget_battery_percentage()}, Status:{self.get_maintenance_status()}."
+        return f"{type(self).__name__} {self.vehicle_id}({self.model}) - Battery: {self.get_battery_percentage()}, Status:{self.get_maintenance_status()}."
 
     def main():
         print(r"""
