@@ -43,6 +43,13 @@ class Vehicle(ABC):
     @abstractmethod
     def calculate_trip_cost(self,distance):
         pass
+    
+    def __eq__(self,other):
+        if isInstance(other,Vehicle):
+            return self.vehicle_id == other.vehicle_id
+        else:
+            return False
+
 
     def main():
         print(r"""
