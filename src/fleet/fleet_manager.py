@@ -49,3 +49,27 @@ class FleetManager():
             print(vehicle)
 
         
+    def get_vehicles_by_type(self,hub_name=None):
+        categorized={}
+        if hub_name:
+            vehicles=self.get_vehicles_by_hub(hub_name)
+        else:
+            vehicles=[]
+            for hub_vehicles in self.hubs.values():
+                vehicles.extend(hub_vehicles)
+        
+        for vehicle in vehicles:
+            vehicle_type=type(vehicle).__name__
+            categorized.setdefault(vehicle_type, []).append(vehicle)
+        
+        return categorized
+
+    def display_vehicles_by_type(self,hub_name=None):
+        categorized=self.get_vehicles_by_type(hub_name)
+
+        for vehicle_type,vehicle_list in categorized.items():
+            print(f"\n--- {vehicle_type} ---")
+            for vehicle in vehicle_list:
+                print(vehicle)
+            print("\n")
+
