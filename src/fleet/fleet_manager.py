@@ -14,8 +14,11 @@ class FleetManager():
         if hub_name not in self.hubs:
             print(f"Hub {hub_name} does not exist.")
             return
-        self.hubs[hub_name].append(vehicle)
-        print(f"Vehicle {vehicle} added to Hub {hub_name} succesfully!")
+        if vehicle in self.hubs[hub_name]:
+            self.hubs[hub_name].append(vehicle)
+            print(f"Vehicle {vehicle} added to Hub {hub_name} succesfully!")
+        else:
+            print(f"Vehicle {vehicle} already exists.")
 
     def get_vehicles_by_hub(self,hub_name):
         if hub_name not in self.hubs:
