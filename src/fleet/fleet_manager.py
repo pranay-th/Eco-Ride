@@ -14,7 +14,7 @@ class FleetManager():
         if hub_name not in self.hubs:
             print(f"Hub {hub_name} does not exist.")
             return
-        if vehicle in self.hubs[hub_name]:
+        if vehicle not in self.hubs[hub_name]:
             self.hubs[hub_name].append(vehicle)
             print(f"Vehicle {vehicle} added to Hub {hub_name} succesfully!")
         else:
@@ -29,3 +29,23 @@ class FleetManager():
 
     def list_all_hubs(self):
         return list(self.hubs.keys())
+
+    def display_vehicles_by_hub(self,hub_name):
+        vehicles = self.get_vehicles_by_hub(hub_name)
+        for vehicle in vehicles:
+            print(vehicle)
+    
+    def search_by_battery_level(self,min_battery,hub_name=None):
+        if hub_name:
+            vehicles=self.get_vehicles_by_hub(hub_name)
+        else:
+            vehicles=[]
+            for hub_vehicles in self.hubs.values():
+                vehicles.extend(hub_vehicles)
+        
+        filtered_vehicles=filter(lambda v: v.get_battery_percentage() > min_battery,vehicles)
+
+        for vehicle in filtered_vehicles:
+            print(vehicle)
+
+        
