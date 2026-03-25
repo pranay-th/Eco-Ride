@@ -73,3 +73,25 @@ class FleetManager():
                 print(vehicle)
             print("\n")
 
+    def get_vehicle_count_by_status(self,hub_name=None):
+        categorized={}
+        if hub_name:
+            vehicles=self.get_vehicles_by_hub(hub_name)
+        else:
+            vehicles=[]
+            for hub_vehicles in self.hubs.values():
+                vehicles.extend(hub_vehicles)
+        
+        for vehicle in vehicles:
+            vehicle_status=vehicle.get_maintenance_status()
+            categorized[vehicle_status]=categorized.get(vehicle_status,0)+1
+            
+        return categorized
+    
+    def display_fleet_analytics(self,hub_name=None):
+        status_count=self.get_vehicle_count_by_status(hub_name)
+        print("=== Fleet Analytics ===")
+        for status, count in status_count.items():
+            print(f"{status}: {count}")
+
+        
